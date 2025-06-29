@@ -1,0 +1,94 @@
+/* Background gradient 
+body {
+    background: linear-gradient(to right, #d1e1f2, #7edef2);
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+*/
+/* Main container */
+
+.notification_main{
+    background: linear-gradient(to right, #d1e1f2, #7edef2); 
+}
+.notifications-container {
+    max-width: 850px;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Page title */
+.page-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Category section */
+.category-section {
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Different colors for categories */
+.category-section:nth-child(2) {
+    background: #3cc1ff; /* Orange for Pre-Designed Messages */
+    border-left: 8px solid #0004ff;
+}
+
+.category-section:nth-child(3) {
+    background: #3cc1ff; /* Green for Tour Plan */
+    border-left: 8px solid #0004ff;
+}
+
+/* Category title */
+.category-title {
+    font-size: 24px;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+/* Notification list */
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Notification Card */
+.notification-card {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    border-left: 5px solid #1976d2;
+}
+
+.notification-card h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.notification-card p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Hover effect */
+.notification-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    background: #c2ebff;
+}

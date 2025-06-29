@@ -1,5 +1,6 @@
 package travora.travora.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.LoggerFactory;
@@ -56,6 +57,20 @@ public class Loginservice {
         } 
         return false; 
     }
+    
+    public Login updatePassword(String email, String newPassword) {
+        Optional<Login> userOpt = loginRepository.findByEmail(email);
+        if (userOpt.isPresent()) {
+            Login user = userOpt.get();
+            user.setPassword(newPassword);
+            return loginRepository.save(user);
+        } else {
+            // Instead of throwing, return null or handle gracefully
+            logger.warn("No login found for email: {}", email);
+            return null;
+        }
+    }
+    
     
     
     

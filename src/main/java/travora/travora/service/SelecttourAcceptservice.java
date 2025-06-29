@@ -25,4 +25,8 @@ public class SelecttourAcceptservice {
     public SelecttourAccept createBooking(SelecttourAccept booking) {
         return selectiontouracceptrepository.save(booking);
     }
+
+     public List<SelecttourAccept> getByEmail(String email) {
+        return selectiontouracceptrepository.findByEmail(email);
+    }
 }

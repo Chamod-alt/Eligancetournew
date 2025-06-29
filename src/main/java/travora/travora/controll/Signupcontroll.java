@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import travora.travora.model.Signup;
-
+import travora.travora.repository.Signuprepository;
 import travora.travora.service.Signupservice;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -28,6 +31,9 @@ public class Signupcontroll {
  
     @Autowired
     private Signupservice signupservice;
+
+    @Autowired
+    private Signuprepository signuprepository;
 
     
 {/* 
@@ -67,5 +73,41 @@ public ResponseEntity<Signup> getUserByEmail(@PathVariable String email) {
     return user.map(ResponseEntity::ok)
                .orElseGet(() -> ResponseEntity.notFound().build());
 } 
+
+@PostMapping("path")
+public String postMethodName(@RequestBody String entity) {
+    //TODO: process POST request
+    
+    return entity;
+}
+
+@PutMapping("/update-password")
+public Signup updatePassword(String email, String newPassword) {
+  Optional<Signup> userOpt = signuprepository.findByEmail(email);
+  if (userOpt.isPresent()) {
+      Signup user = userOpt.get();
+      user.setPassword(newPassword);
+      return signuprepository.save(user);
+  } else {
+      throw new IllegalStateException("No user found with email: " + email);
+  }
+}
+
+@PutMapping("/update")
+public ResponseEntity<?> updateUser(@RequestBody Signup updatedUser) {
+    Optional<Signup> existingUser = signuprepository.findByEmail(updatedUser.getEmail());
+    if (existingUser.isPresent()) {
+        Signup user = existingUser.get();
+        user.setUsername(updatedUser.getUsername());
+        user.setContact_Number(updatedUser.getContact_Number());
+        user.setPassword(updatedUser.getPassword());
+        Signup savedUser = signuprepository.save(user);
+        return ResponseEntity.ok(savedUser);
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+
+
 
 }

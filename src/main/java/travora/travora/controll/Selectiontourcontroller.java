@@ -31,4 +31,5 @@ public class Selectiontourcontroller {
     public Selectiontour createBooking(@RequestBody Selectiontour booking) {
         return selectionservice.createBooking(booking);
     }
+    
 }

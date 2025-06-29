@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,7 +66,7 @@ public ResponseEntity<String> authenticateAndSave(@RequestBody Login login) {
 }
 
 
-    // Get login details by email
+    
     @GetMapping("/{email}")
     public ResponseEntity<Login> getLoginByEmail(@PathVariable String email) {
         logger.info("Fetching login details for email: {}", email);
@@ -76,4 +77,17 @@ public ResponseEntity<String> authenticateAndSave(@RequestBody Login login) {
         });
     }
  
+    @PutMapping("/update-password/{email}")
+    public ResponseEntity<String> updatePassword(@PathVariable String email, @RequestBody String newPassword) {
+        Login updatedLogin = loginService.updatePassword(email, newPassword);
+    
+        if (updatedLogin != null) {
+            return ResponseEntity.ok("Password updated successfully.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    
+
 }

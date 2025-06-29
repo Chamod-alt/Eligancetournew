@@ -40,4 +40,16 @@ public class Signupservice {
       return signuprepository.save(user);
   }
 
+  public Signup updatePassword(String email, String newPassword) {
+   Optional<Signup> userOpt = signuprepository.findByEmail(email);
+   if (userOpt.isPresent()) {
+       Signup user = userOpt.get();
+       user.setPassword(newPassword);
+       return signuprepository.save(user);
+   } else {
+       throw new IllegalStateException("No user found with email: " + email);
+   }
+}
+
+
 }

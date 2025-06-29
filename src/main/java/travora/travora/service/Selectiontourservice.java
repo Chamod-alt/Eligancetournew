@@ -22,4 +22,8 @@ public class Selectiontourservice {
     public Selectiontour createBooking(Selectiontour booking) {
         return selectiontourrepository.save(booking);
     }
+
+    public Selectiontour getBookingById(Long id) {
+        return selectiontourrepository.findById(id).orElse(null);
+    }
 }

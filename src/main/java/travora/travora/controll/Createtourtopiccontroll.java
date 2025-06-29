@@ -32,13 +32,13 @@ public class Createtourtopiccontroll {
         return tourService.savetour(tour);
     }
 
-    // GET all tour topics
+    
     @GetMapping
     public List<Createtourtopic> getAllTourTopics() {
         return tourService.getAlltour();
     }
 
-    // GET a single tour topic by its primary key (tour_topicnumber)
+    
     @GetMapping("/{tour_topicnumber}")
     public Createtourtopic getTourTopicById(@PathVariable Long tour_topicnumber) {
         return tourService.gettourById(tour_topicnumber).orElse(null);
